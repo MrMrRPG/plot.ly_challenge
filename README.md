@@ -1,2 +1,1 @@
-# plot.ly_challenge
-Plot.ly challenge submission for UCI Data Analytics Bootcamp
+Plot.ly Challenge for UCI Data Analytics Bootcamp 2021.
