@@ -1,6 +1,7 @@
 // 1. Use the D3 library to read samples.json
 const sample = './samples.json';
 
+// function barChart(x){
 let data = d3.json(sample).then(function(data){
 	console.log(data)
 // 2. Create a horizontal bar chart with a dropdown menu to display the top 10
@@ -61,10 +62,19 @@ let layout2 = {
 
 Plotly.newPlot("bubble", bubble, layout2);
 
+// 4. Display the sample metadata; i.e., an individual's demographic info.
 
 
 });
 
+// }
+
+function optionChanged(newSample){
+	variousCharts(newSample);
+	metadata(newSample);
+}
+
+// init();
 
 
-console.log(data)
+// console.log(data)
