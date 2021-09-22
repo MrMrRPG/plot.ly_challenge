@@ -1,8 +1,7 @@
-// 1. Use the D3 library to read samples.json
 const sample = "./samples.json";
 
-function metadata(samples) {
-  d3.json(sample).then((data) => {
+function metadata(sample) {
+  d3.json("samples.json").then((data) => {
     var metadata = data.metadata;
 
     var array = metadata.filter((samplevalue) => samplevalue.id == sample);
@@ -20,9 +19,8 @@ function metadata(samples) {
   });
 }
 
-function charts(x) {
-  let data = d3.json(sample).then(function (data) {
-    console.log(data);
+function charts(sample) {
+  d3.json("samples.json").then((data) => {
     // 2. Create a horizontal bar chart with a dropdown menu to display the top 10
     // OTUs found in that individual.
 
@@ -30,12 +28,13 @@ function charts(x) {
     // Use *otu_ids* as the labels for the bar chart.
     // USE *otu_labels* as the hovertext for the chart.
 
-    var tempt = data.samples[0];
+    var tempt = data.samples.filter((sampleid) => sampleid.id == sample);
+    var result = tempt[0];
     console.log(tempt);
 
-    let sampleValues = tempt.sample_values;
-    let otuIDs = tempt.otu_ids;
-    let otuLabels = tempt.otu_labels;
+    let sampleValues = result.sample_values;
+    let otuIDs = result.otu_ids;
+    let otuLabels = result.otu_labels;
 
     slicedData = sampleValues.slice(0, 10);
     slicedIDs = otuIDs.slice(0, 10);
@@ -88,7 +87,7 @@ function charts(x) {
 function init() {
   var menu = d3.select("#selDataset");
 
-  d3.json(sample).then((data) => {
+  d3.json("samples.json").then((data) => {
     var DataNames = data.names;
     DataNames.forEach((sample) => {
       menu.append("option").text(sample);
@@ -106,5 +105,3 @@ function optionChanged(newSample) {
 }
 
 init();
-
-// console.log(data)
